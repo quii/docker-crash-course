@@ -73,6 +73,7 @@ CMD ["cat", "file1.txt"]
 Try the following
 
 `$ docker build cmd/ --tag=cmd`
+
 `$ docker run cmd`
 
 You can override the command ran like so
@@ -95,5 +96,7 @@ ENTRYPOINT ["cat"]
 Try the following
 
 `$ docker build entrypoint/ --tag=ep`
+
 `$ docker run ep`
+
 `$ docker run ep file1.txt`
