@@ -54,3 +54,46 @@ Yet another one
 - Leverage caching as best you can
     - People's #1 complaint about docker is slowness, and _usually_ it's down to not appreciating how to craft a lovely dockerfile
 - If you find yourself having to rebuild images a lot, maybe you haven't designed things as well as you could have
+
+## Different kinds of docker images you can make
+
+### `CMD`
+
+When you put this at the end of the file this is the _default_ command that will be run. 
+
+```dockerfile
+FROM alpine:3.7
+
+RUN echo file1 >> file1.txt
+RUN echo file2 >> file2.txt
+
+CMD ["cat", "file1.txt"]
+```
+
+Try the following
+
+`$ docker build cmd/ --tag=cmd`
+`$ docker run cmd`
+
+You can override the command ran like so
+
+`$ docker run cmd ls`
+
+### `ENTRYPOINT`
+
+Sometimes you want to build an image that can be run as a program that takes arguments
+
+```dockerfile
+FROM alpine:3.7
+
+RUN echo file1 >> file1.txt
+RUN echo file2 >> file2.txt
+
+ENTRYPOINT ["cat"]
+```
+
+Try the following
+
+`$ docker build entrypoint/ --tag=ep`
+`$ docker run ep`
+`$ docker run ep file1.txt`
